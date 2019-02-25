@@ -1,11 +1,8 @@
 <template>
   <div class="home2">
-    <Table border :columns="columns" :data="data1"></Table>
-    <Modal
-      v-model="modal"
-      title="信息修改"
-      @on-ok="ok('formValidate')"
-    >
+    <Table stripe border :columns="columns" :data="data1"></Table>
+    <Page :total="total" :page-size="limit" show-sizer show-total @on-change="changPage" @on-page-size-change="test"/>
+    <Modal v-model="modal" title="信息修改" @on-ok="ok('formValidate')">
       <Form ref="formValidate" :rules="ruleValidate" :model="formTop" label-position="top">
         <FormItem label="姓名" prop="name">
           <Input v-model="formTop.name"></Input>
@@ -83,7 +80,7 @@ export default {
                   },
                   on: {
                     click: () => {
-                      this.show(params.row);
+                      this.edit(params.row);
                     }
                   }
                 },
@@ -108,7 +105,8 @@ export default {
           }
         }
       ],
-      data1: [],
+      data: [], //请求到的所有数据
+      data1: [], //表格的数据
       modal: false, //对话框显示隐藏
       formTop: {
         //表单数据
@@ -122,11 +120,14 @@ export default {
             trigger: "blur"
           }
         ]
-      }
+      },
+      total: 0, //分页总数
+      limit: 10 //每页条数
     };
   },
   methods: {
-    show(item) {
+    // 编辑
+    edit(item) {
       //在编辑中获取数据
       this.$axios
         .get("http://localhost:3000/users/" + item.id)
@@ -143,6 +144,7 @@ export default {
       //     }<br>sex：${item.sex}`
       //   });
     },
+    // 删除
     remove(index) {
       this.$axios
         .delete("http://localhost:3000/users/" + index)
@@ -154,23 +156,47 @@ export default {
           // this.showData();//使用此方法也可以刷新当前页面数据
         });
     },
+    // 数据展示
     showData() {
+      // 请求获取数据
       this.$axios.get("http://localhost:3000/users").then(response => {
-        this.data1 = response.data;
+        this.total = response.data.length; //获取数据条数
+        this.data = response.data; //获取所有的数据
+        // 如果获取数据的总条数小于每页的条数，就把总数据赋值给表格数据，否则就根据每页条数进行分页
+        if (this.total < this.limit) {
+          this.data1 = this.data;
+        } else {
+          this.data1 = this.data.slice(0, this.limit);
+        }
       });
     },
+    // 确认编辑
     ok(name) {
       //   this.$Message.info("点击了确定");
       this.$refs[name].validate(valid => {
         if (valid) {
-          this.$axios.patch("http://localhost:3000/users/"+ this.formTop.id,this.formTop).then( response => {
-            this.$Message.success("信息修改成功!");
-            this.showData();
-          })
+          this.$axios
+            .patch(
+              "http://localhost:3000/users/" + this.formTop.id,
+              this.formTop
+            )
+            .then(response => {
+              this.$Message.success("信息修改成功!");
+              this.showData();
+            });
         } else {
           this.$Message.error("信息修改失败!");
         }
       });
+    },
+    // 改变页码(page为改变后的页码)
+    changPage(page) {
+      var _start = (page - 1)*this.limit;
+      var _end = page*this.limit;
+      this.data1 = this.data.slice(_start,_end);
+    },
+    test(pageSize){
+        console.log(pageSize);
     }
   },
   created() {
