@@ -1,7 +1,23 @@
 <template>
   <div class="home2">
-    <Table stripe border :columns="columns" :data="data1"></Table>
-    <Page :total="total" :page-size="limit" show-sizer show-total transfer @on-change="changPage" @on-page-size-change="changePageSize"/>
+    <Input
+      type="text"
+      placeholder="搜索"
+      search
+      id="search"
+      v-model="inputFilter"
+      @on-search="filterData()"
+    />
+    <Table stripe :loading="loading" :columns="columns" :data="data1"></Table>
+    <Page
+      :total="total"
+      :page-size="limit"
+      show-sizer
+      show-total
+      transfer
+      @on-change="changPage"
+      @on-page-size-change="changePageSize"
+    />
     <Modal v-model="modal" title="信息修改" ok-text="确定修改" @on-ok="ok('formValidate')">
       <Form ref="formValidate" :rules="ruleValidate" :model="formTop" label-position="top">
         <FormItem label="姓名" prop="name">
@@ -106,7 +122,10 @@ export default {
         }
       ],
       data: [], //请求到的所有数据
+      dataOrign: [], //原始数据，主要用于筛选初始化后恢复原来的数据
       data1: [], //表格的数据
+      loading: true, //表格加载
+      inputFilter: "", //搜索值
       modal: false, //对话框显示隐藏
       formTop: {
         //表单数据
@@ -137,6 +156,7 @@ export default {
         .then(() => {
           this.modal = true;
         });
+      // console.log(this.filterData('80'))
       //   this.$Modal.info({
       //     title: "User Info",
       //     content: `Name：${item.name}<br>Age：${
@@ -160,15 +180,21 @@ export default {
     showData() {
       // 请求获取数据
       this.$axios.get("http://localhost:3000/users").then(response => {
-        this.total = response.data.length; //获取数据条数
+        this.loading = false; //加载中
         this.data = response.data; //获取所有的数据
-        // 如果获取数据的总条数小于每页的条数，就把总数据赋值给表格数据，否则就根据每页条数进行分页
-        if (this.total < this.limit) {
-          this.data1 = this.data;
-        } else {
-          this.data1 = this.data.slice(0, this.limit);
-        }
+        this.dataOrign = response.data; //保存原始数据
+        this.dataChange(response.data); //传入总数据
       });
+    },
+    //因为筛选数据后还要重新调用一次所以单独抽离出来
+    dataChange(res) {
+      // 如果获取数据的总条数小于每页的条数，就把总数据赋值给表格数据，否则就根据每页条数进行分页
+      this.total = res.length; //获取数据条数
+      if (this.total < this.limit) {
+        this.data1 = res;
+      } else {
+        this.data1 = res.slice(0, this.limit);
+      }
     },
     // 确认编辑
     ok(name) {
@@ -191,14 +217,34 @@ export default {
     },
     // 改变页码(page为改变后的页码)
     changPage(page) {
-      var _start = (page - 1)*this.limit;
-      var _end = page*this.limit;
-      this.data1 = this.data.slice(_start,_end);
+      var _start = (page - 1) * this.limit;
+      var _end = page * this.limit;
+      this.data1 = this.data.slice(_start, _end);
     },
-    changePageSize(pageSize){
-        // console.log(pageSize);
-        this.limit = pageSize;
-        this.showData();
+    changePageSize(pageSize) {
+      // console.log(pageSize);
+      this.limit = pageSize;
+      this.showData();
+    },
+    // 数据过滤
+    filterData() {
+      let value = this.inputFilter;
+      //如果输入值为空则保持为原数据
+      if (value == "") {
+        this.dataChange(this.dataOrign);
+        this.data = this.dataOrign//让新的总数据(data1)与原始数据(dataOrign)保持一致
+      } else {
+        this.data = this.data.filter(function(item) {
+          return (
+            item.name.match(value) ||
+            item.sex.match(value) ||
+            String(item.age).match(value) ||
+            item.tel.match(value) ||
+            item.email.match(value)
+          );
+        });
+        this.dataChange(this.data);
+      }
     }
   },
   created() {
@@ -207,5 +253,15 @@ export default {
 };
 </script>
 
+<style lang="">
+.ivu-table th {
+  background: rgb(184, 233, 250);
+}
+</style>
+
 <style scoped>
+#search {
+  margin: 10px 0;
+  width: 100px;
+}
 </style>

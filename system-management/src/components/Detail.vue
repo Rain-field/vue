@@ -13,9 +13,9 @@
       <label for>邮箱</label>
       <input type="text" v-model="users.email">
     </div>
-      <Button type="primary" @click="ok()">保存</Button>
-      <Button type="primary" @click="del()">删除</Button>
-      <Button type="primary" v-on:click="cancel()">返回</Button>
+    <Button type="primary" @click="ok()">保存</Button>
+    <Button type="primary" @click="del()">删除</Button>
+    <Button type="primary" v-on:click="cancel()">返回</Button>
   </div>
 </template>
 
@@ -23,60 +23,69 @@
 export default {
   name: "Add",
   data() {
-      return {
-          users:{}
-      }
+    return {
+      users: {}
+    };
   },
   methods: {
-     cancel() {
-         this.$router.go(-1);
-     },
-     ok() {
-         this.$axios.patch("http://localhost:3000/users/"+this.$route.params.id,this.users).then((result) => {
-            this.$Message.success("编辑成功");
-         }).then(() => {
-            this.$router.push({path:"/"});
-         })
-     },
-     getData(id) {
-         this.$axios.get("http://localhost:3000/users/"+id).then((result) => {
-            this.users = result.data;
-         })
-     },
-     del() {
-         this.$axios.delete("http://localhost:3000/users/"+this.$route.params.id).then(result => {
-            this.$Message.success("删除成功");
-         }).then(() => {
-            this.$router.push({path:"/"});
-         })
-     }
+    cancel() {
+      this.$router.go(-1);
+    },
+    ok() {
+      this.$axios
+        .patch(
+          "http://localhost:3000/users/" + this.$route.params.id,
+          this.users
+        )
+        .then(result => {
+          this.$Message.success("编辑成功");
+        })
+        .then(() => {
+          this.$router.push({ path: "/" });
+        });
+    },
+    getData(id) {
+      this.$axios.get("http://localhost:3000/users/" + id).then(result => {
+        this.users = result.data;
+      });
+    },
+    del() {
+      this.$axios
+        .delete("http://localhost:3000/users/" + this.$route.params.id)
+        .then(result => {
+          this.$Message.success("删除成功");
+        })
+        .then(() => {
+          this.$router.push({ path: "/" });
+        });
+    }
   },
   created() {
-      this.getData(this.$route.params.id);
-  },
-//   updated() {
-//       this.getData(this.$route.params.id);
-//   },
+    this.getData(this.$route.params.id);
+  }
+  //   updated() {
+  //       this.getData(this.$route.params.id);
+  //   },
 };
 </script>
 
 <style scoped>
-.add{
-    box-sizing: border-box;
+.add {
+  box-sizing: border-box;
 }
-.container{
-    background: #f8f8f9;
-    padding: 20px;
+.container {
+  background: #f8f8f9;
+  padding: 20px;
 }
-.container label{
-    display: inline-block;
-    margin-top: 10px;
+.container label {
+  display: inline-block;
+  margin-top: 10px;
 }
-.container input{
-    width: 100%;
-    margin-top: 5px;
+.container input {
+  width: 100%;
+  margin-top: 5px;
 }
-Button{
-    margin-left: 20px;
+button {
+  margin-left: 20px;
 }
 </style>
