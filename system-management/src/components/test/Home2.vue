@@ -1,7 +1,7 @@
 <template>
   <div class="home2">
     <Table stripe border :columns="columns" :data="data1"></Table>
-    <Page :total="total" :page-size="limit" show-sizer show-total @on-change="changPage" @on-page-size-change="test"/>
+    <Page :total="total" :page-size="limit" show-sizer show-total transfer @on-change="changPage" @on-page-size-change="changePageSize"/>
     <Modal v-model="modal" title="信息修改" @on-ok="ok('formValidate')">
       <Form ref="formValidate" :rules="ruleValidate" :model="formTop" label-position="top">
         <FormItem label="姓名" prop="name">
@@ -195,8 +195,10 @@ export default {
       var _end = page*this.limit;
       this.data1 = this.data.slice(_start,_end);
     },
-    test(pageSize){
-        console.log(pageSize);
+    changePageSize(pageSize){
+        // console.log(pageSize);
+        this.limit = pageSize;
+        this.showData();
     }
   },
   created() {

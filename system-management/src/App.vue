@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <Layout>
-      <Header :style="{position: 'fixed', width: '100%'}">
+      <Header :style="{position: 'fixed', width: '100%',zIndex:'999'}">
         <Menu mode="horizontal" theme="dark" active-name="1">
           <div class="app-logo">管理系统</div>
           <div class="app-nav">
