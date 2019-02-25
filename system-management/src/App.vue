@@ -14,6 +14,9 @@
             <MenuItem name="3">
               <Icon type="ios-keypad"></Icon><router-link to="/about">关于我们</router-link>
             </MenuItem>
+            <MenuItem name="4">
+              <Icon type="ios-keypad"></Icon><router-link to="/test/app">測試</router-link>
+            </MenuItem>
           </div>
         </Menu>
       </Header>

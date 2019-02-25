@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Mock.js</title>
+</head>
+
+<body>
+    <button class="btn">点击请求数据</button>
+    <button class="btn2">点击循环添加多条数据</button>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="./bower_components/mockjs/dist/mock.js"></script>
+    <!-- <script src="http://mockjs.com/dist/mock.js"></script> -->
+    <script>
+        // Mock.mock(rurl, template)
+        var obj = [];
+        Mock.mock(/\.json/, {
+            'list|10': [{
+                'name': '@cname',
+                'age': '@integer(10,80)',
+                'sex': '@string("男女",1)',
+                'tel': /^1[34578]\d{9}$/,
+                'email': '@email'
+            }]
+        })
+        $(document).on('click', '.btn', function () {
+            $.ajax({
+                url: 'hello.json',
+                type: 'get',
+                dataType: 'json',
+                success(data) {
+                    obj = data.list;
+                    console.log(obj);
+                }
+            })
+        })
+        $(document).on('click', '.btn2', function () {
+            obj.forEach(function(item,index){
+                postData(item);
+            })
+           
+        })
+        function postData(item){
+            $.ajax({
+                url: 'http://localhost:3000/users',
+                type: 'post',
+                data: item,
+                dataType: 'json',
+                success(data) {
+                    console.log(data);
+                }
+            })
+        }
+    </script>
+</body>
+
+</html>
