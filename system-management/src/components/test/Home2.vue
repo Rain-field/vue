@@ -2,7 +2,7 @@
   <div class="home2">
     <Table stripe border :columns="columns" :data="data1"></Table>
     <Page :total="total" :page-size="limit" show-sizer show-total transfer @on-change="changPage" @on-page-size-change="changePageSize"/>
-    <Modal v-model="modal" title="信息修改" @on-ok="ok('formValidate')">
+    <Modal v-model="modal" title="信息修改" ok-text="确定修改" @on-ok="ok('formValidate')">
       <Form ref="formValidate" :rules="ruleValidate" :model="formTop" label-position="top">
         <FormItem label="姓名" prop="name">
           <Input v-model="formTop.name"></Input>
