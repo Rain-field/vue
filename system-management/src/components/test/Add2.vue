@@ -3,15 +3,15 @@
     <div class="container">
       <h2>用户信息</h2>
       <label for>姓名</label>
-      <input type="text" v-model="users.name" autofocus>
-      <label for>年龄</label>
-      <input type="text" v-model="users.age">
+      <Input type="text" v-model="users.name" autofocus/>
+      <label for>年龄</label/>
+      <Input type="text" v-model="users.age"/>
       <label for>性别</label>
-      <input type="text" v-model="users.sex">
+      <Input type="text" v-model="users.sex"/>
       <label for>电话</label>
-      <input type="text" v-model="users.tel">
+      <Input type="text" v-model="users.tel"/>
       <label for>邮箱</label>
-      <input type="text" v-model="users.email">
+      <Input type="text" v-model="users.email"/>
     </div>
       <Button type="primary" v-on:click="addData()">确认提交</Button>
   </div>
