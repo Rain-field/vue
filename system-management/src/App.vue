@@ -17,6 +17,9 @@
             <MenuItem name="4">
               <Icon type="ios-keypad"></Icon><router-link to="/iview">iview</router-link>
             </MenuItem>
+            <MenuItem name="5">
+              <Icon type="ios-keypad"></Icon><router-link to="/lizi">粒子</router-link>
+            </MenuItem>
           </div>
         </Menu>
       </Header>
@@ -62,7 +65,7 @@ export default {
   left: 20px;
 }
 .app-nav {
-  width: 420px;
+  width: 512px;
   margin: 0 auto;
   margin-right: 20px;
 }

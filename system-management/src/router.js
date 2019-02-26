@@ -12,7 +12,7 @@ import Form from './iview/Form';
 import TablePageFilterModal from './iview/TablePageFilterModal';
 import Step from './iview/Step';
 
-
+import Lizi from './lizi/Lizi';
 
 export  default [
         {path:'/',component:Home},
@@ -29,5 +29,7 @@ export  default [
             {path:'/iview/tablePageFilterModal',component:TablePageFilterModal},
             {path:'/iview/form',component:Form},
             {path:'/iview/step',component:Step},
-        ]}
+        ]},
+
+        {path:'/lizi',component:Lizi}
     ]

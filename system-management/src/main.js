@@ -7,6 +7,7 @@ import axios from 'axios';
 import iView from 'iview';
 import 'iview/dist/styles/iview.css';
 import Router from './router';
+import VueParticles from 'vue-particles'  
 
 Vue.config.productionTip = false
 
@@ -14,6 +15,7 @@ Vue.prototype.$axios = axios;
 
 Vue.use(VueRouter);
 Vue.use(iView);
+Vue.use(VueParticles) 
 
 const router = new VueRouter({
   mode:"history",
