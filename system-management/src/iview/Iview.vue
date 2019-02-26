@@ -1,5 +1,5 @@
 <template>
-  <div id="app2">
+  <div id="iw">
     <Menu mode="horizontal" active-name="1">
       <MenuItem name="1">
         <router-link to="/iview/tablePageFilterModal"><Icon type="ios-paper"/>首页</router-link>
@@ -17,7 +17,7 @@
 
 <script>
 export default {
-  name: "App2",
+  name: "Iw",
   provide() {
       return {
           reload: this.reload

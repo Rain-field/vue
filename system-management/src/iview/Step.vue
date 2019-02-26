@@ -1,5 +1,5 @@
 <template>
-  <div class="stp">
+  <div class="sp">
     <Steps :current="current" size="small">
       <Step title="已完成" content="这里是该步骤的描述信息"></Step>
       <Step title="进行中" content="这里是该步骤的描述信息"></Step>
@@ -14,7 +14,7 @@
 
 <script>
 export default {
-  name: "Stp",
+  name: "Sp",
   data() {
     return {
       current: 0,

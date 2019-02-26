@@ -1,5 +1,5 @@
 <template>
-  <div class="home">
+  <div class="show">
     <input type="text" placeholder="搜索" v-model="filterInput">
     <table>
       <thead>
@@ -28,7 +28,7 @@
 
 <script>
 export default {
-  name: "Home",
+  name: "Show",
   data() {
     return {
       users: [],
@@ -42,7 +42,7 @@ export default {
       });
     },
     detailData(id) {
-        this.$router.push({path:"/detail/"+id});
+        this.$router.push({path:"/orign/detail/"+id});
     },
     // 搜索
     filterData(users,value) {
@@ -58,7 +58,7 @@ export default {
 </script>
 
 <style scoped>
-.home {
+.show {
   box-sizing: border-box;
   padding: 20px;
 }

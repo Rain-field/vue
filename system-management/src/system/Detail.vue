@@ -1,5 +1,5 @@
 <template>
-  <div class="add">
+  <div class="detail">
     <div class="container">
       <h2>用户详情</h2>
       <label for>姓名</label>
@@ -21,7 +21,7 @@
 
 <script>
 export default {
-  name: "Add",
+  name: "Detail",
   data() {
     return {
       users: {}
@@ -41,7 +41,7 @@ export default {
           this.$Message.success("编辑成功");
         })
         .then(() => {
-          this.$router.push({ path: "/" });
+          this.$router.push({ path: "/orign" });
         });
     },
     getData(id) {
@@ -56,7 +56,7 @@ export default {
           this.$Message.success("删除成功");
         })
         .then(() => {
-          this.$router.push({ path: "/" });
+          this.$router.push({ path: "/orign" });
         });
     }
   },
@@ -70,7 +70,7 @@ export default {
 </script>
 
 <style scoped>
-.add {
+.detail {
   box-sizing: border-box;
 }
 .container {

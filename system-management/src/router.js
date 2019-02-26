@@ -21,7 +21,7 @@ export  default [
         {path:'/orign',component:Orign,redirect:'/orign/show',children:[
             {path:'/orign/show',component:Show},
             {path:'/orign/add',component:Add},
-            {path:'/orign/detail',component:Detail}
+            {path:'/orign/detail/:id',component:Detail}
         ]},
 
         // iview

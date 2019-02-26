@@ -1,5 +1,5 @@
 <template>
-  <div class="add">
+  <div class="fm">
     <div class="container">
       <h2>用户信息</h2>
       <label for>姓名</label>
@@ -19,7 +19,7 @@
 
 <script>
 export default {
-  name: "Add",
+  name: "Fm",
   data() {
       return {
           users:{}
@@ -37,7 +37,7 @@ export default {
           this.$axios.post("http://localhost:3000/users",newData).then(response => {
               this.$Message.success("添加成功");
           }).then( ()=> {
-              this.$router.push({path:"/test/app"});
+              this.$router.push({path:"/iview"});
           })
       }
   },
@@ -45,7 +45,7 @@ export default {
 </script>
 
 <style scoped>
-.add{
+.fm{
     box-sizing: border-box;
 }
 .container{

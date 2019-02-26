@@ -1,5 +1,5 @@
 <template>
-  <div class="home2">
+  <div class="tl">
     <Input
       type="text"
       placeholder="搜索"
@@ -42,7 +42,7 @@
 
 <script>
 export default {
-  name: "Home2",
+  name: "Tl",
   inject: ["reload"],
   data() {
     return {
