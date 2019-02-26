@@ -4,7 +4,7 @@
       <h2>用户信息</h2>
       <label for>姓名</label>
       <Input type="text" v-model="users.name" autofocus/>
-      <label for>年龄</label/>
+      <label for>年龄</label>
       <Input type="text" v-model="users.age"/>
       <label for>性别</label>
       <Input type="text" v-model="users.sex"/>
