@@ -1,13 +1,13 @@
 <template>
   <div class="sp">
-    <Steps :current="current" size="small">
+    <Steps :current="current" size="small" class="marg">
       <Step title="第一步"></Step>
       <Step title="第二步"></Step>
       <Step title="第三步"></Step>
       <Step title="第四步"></Step>
     </Steps>
-    <i-switch v-model="switch1" @on-change="change"/>
     <Button type="primary" @click="nextStep()">下一步</Button>
+    <i-switch v-model="switch1" @on-change="change" class="swi"/>
   </div>
 </template>
 
@@ -37,8 +37,12 @@ export default {
 </script>
 
 <style scoped>
-button {
-  float: right;
-  margin: 400px 200px 0 0;
+.marg{
+  margin: 20px 0;
 }
+.swi{
+  display: block;
+  margin: 20px 0;
+}
+
 </style>
