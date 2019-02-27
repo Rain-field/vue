@@ -6,6 +6,8 @@ import VueRouter from 'vue-router';
 import axios from 'axios';
 import iView from 'iview';
 import 'iview/dist/styles/iview.css';
+import ElementUI from 'element-ui';
+import 'element-ui/lib/theme-chalk/index.css';
 import Router from './router';
 import VueParticles from 'vue-particles'  
 
@@ -15,6 +17,7 @@ Vue.prototype.$axios = axios;
 
 Vue.use(VueRouter);
 Vue.use(iView);
+Vue.use(ElementUI);
 Vue.use(VueParticles) 
 
 const router = new VueRouter({

@@ -12,7 +12,7 @@
               <Icon type="ios-keypad"></Icon><router-link to="/orign">原始信息</router-link>
             </MenuItem>
             <MenuItem name="3">
-              <Icon type="ios-keypad"></Icon><router-link to="/step">elementUI</router-link>
+              <Icon type="ios-keypad"></Icon><router-link to="/elementUI">elementUI</router-link>
             </MenuItem>
             <MenuItem name="4">
               <Icon type="ios-keypad"></Icon><router-link to="/iview">iview</router-link>

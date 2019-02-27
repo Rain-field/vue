@@ -12,6 +12,10 @@ import Form from './iview/Form';
 import TablePageFilterModal from './iview/TablePageFilterModal';
 import Step from './iview/Step';
 
+// elementUI
+import EUI from './elementUI/ElementUI';
+import Table from './elementUI/Table';
+
 import Lizi from './lizi/Lizi';
 
 export  default [
@@ -29,6 +33,11 @@ export  default [
             {path:'/iview/tablePageFilterModal',component:TablePageFilterModal},
             {path:'/iview/form',component:Form},
             {path:'/iview/step',component:Step},
+        ]},
+
+        // ElementUI
+        {path:'/elementUI',component:EUI,redirect:'/elementUI/table',children:[
+            {path:'/elementUI/table',component:Table}
         ]},
 
         {path:'/lizi',component:Lizi}
