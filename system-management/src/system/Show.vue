@@ -42,7 +42,8 @@ export default {
       });
     },
     detailData(id) {
-        this.$router.push({path:"/orign/detail/"+id});
+        // this.$router.push({path:"/orign/detail/"+id});
+        this.$router.push({name:'Detail',params:{id:id}});
     },
     // 搜索
     filterData(users,value) {

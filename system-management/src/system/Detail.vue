@@ -41,7 +41,7 @@ export default {
           this.$Message.success("编辑成功");
         })
         .then(() => {
-          this.$router.push({ path: "/orign" });
+          this.$router.push({name:'Orign'});
         });
     },
     getData(id) {
@@ -56,7 +56,7 @@ export default {
           this.$Message.success("删除成功");
         })
         .then(() => {
-          this.$router.push({ path: "/orign" });
+          this.$router.push({name:'Orign'});
         });
     }
   },

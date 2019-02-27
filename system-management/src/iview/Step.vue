@@ -1,10 +1,10 @@
 <template>
   <div class="sp">
     <Steps :current="current" size="small">
-      <Step title="已完成" content="这里是该步骤的描述信息"></Step>
-      <Step title="进行中" content="这里是该步骤的描述信息"></Step>
-      <Step title="待进行" content="这里是该步骤的描述信息"></Step>
-      <Step title="待进行" content="这里是该步骤的描述信息"></Step>
+      <Step title="第一步"></Step>
+      <Step title="第二步"></Step>
+      <Step title="第三步"></Step>
+      <Step title="第四步"></Step>
     </Steps>
     <i-switch v-model="switch1" @on-change="change"/>
     <Button type="primary" @click="nextStep()">下一步</Button>

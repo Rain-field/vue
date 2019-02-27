@@ -37,7 +37,9 @@ export default {
           this.$axios.post("http://localhost:3000/users",newData).then(response => {
               this.$Message.success("添加成功");
           }).then( ()=> {
-              this.$router.push({path:"/"});
+            //   this.$router.push({path:"/orign"});
+            // 如果有参数：this.$router.push({name: 'Orign', params: {key: obj.value}})
+            this.$router.push({name:'Orign'});
           })
       }
   },

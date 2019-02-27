@@ -19,26 +19,26 @@ import Table from './elementUI/Table';
 import Lizi from './lizi/Lizi';
 
 export  default [
-        {path:'/',component:Home},
+        {path:'/',name:'Home',component:Home},
      
         // 原始菜单
-        {path:'/orign',component:Orign,redirect:'/orign/show',children:[
-            {path:'/orign/show',component:Show},
-            {path:'/orign/add',component:Add},
-            {path:'/orign/detail/:id',component:Detail}
-        ]},
-
-        // iview
-        {path:'/iview',component:Iview,redirect:'/iview/TablePageFilterModal',children:[
-            {path:'/iview/tablePageFilterModal',component:TablePageFilterModal},
-            {path:'/iview/form',component:Form},
-            {path:'/iview/step',component:Step},
+        {path:'/orign',name:'Orign',component:Orign,redirect:'/orign/show',children:[
+            {path:'/orign/show',name:'Show',component:Show},
+            {path:'/orign/add',name:'Add',component:Add},
+            {path:'/orign/detail/:id',name:'Detail',component:Detail}
         ]},
 
         // ElementUI
-        {path:'/elementUI',component:EUI,redirect:'/elementUI/table',children:[
-            {path:'/elementUI/table',component:Table}
+        {path:'/elementUI',name:'EUI',component:EUI,redirect:'/elementUI/table',children:[
+            {path:'/elementUI/table',name:'Table',component:Table}
         ]},
 
-        {path:'/lizi',component:Lizi}
+        // iview
+        {path:'/iview',name:'Iview',component:Iview,redirect:'/iview/TablePageFilterModal',children:[
+            {path:'/iview/tablePageFilterModal',name:'TablePageFilterModal',component:TablePageFilterModal},
+            {path:'/iview/form',name:'Form',component:Form},
+            {path:'/iview/step',name:'Step',component:Step},
+        ]},
+
+        {path:'/lizi',name:'Lizi',component:Lizi}
     ]

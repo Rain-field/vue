@@ -6,19 +6,19 @@
           <div class="app-logo">管理系统</div>
           <div class="app-nav">
             <MenuItem name="1">
-              <Icon type="ios-navigate"></Icon><router-link to="/">首页</router-link>
+              <Icon type="ios-navigate"></Icon><router-link :to="{name: 'Home'}">首页</router-link>
             </MenuItem>
             <MenuItem name="2">
-              <Icon type="ios-keypad"></Icon><router-link to="/orign">原始信息</router-link>
+              <Icon type="ios-keypad"></Icon><router-link :to="{name: 'Orign'}">原始信息</router-link>
             </MenuItem>
             <MenuItem name="3">
-              <Icon type="ios-keypad"></Icon><router-link to="/elementUI">elementUI</router-link>
+              <Icon type="ios-keypad"></Icon><router-link :to="{name: 'EUI'}">elementUI</router-link>
             </MenuItem>
             <MenuItem name="4">
-              <Icon type="ios-keypad"></Icon><router-link to="/iview">iview</router-link>
+              <Icon type="ios-keypad"></Icon><router-link :to="{name: 'Iview'}">iview</router-link>
             </MenuItem>
             <MenuItem name="5">
-              <Icon type="ios-keypad"></Icon><router-link to="/lizi">粒子</router-link>
+              <Icon type="ios-keypad"></Icon><router-link :to="{name: 'Lizi'}">粒子</router-link>
             </MenuItem>
           </div>
         </Menu>
