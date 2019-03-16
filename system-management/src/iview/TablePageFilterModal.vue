@@ -182,8 +182,8 @@ export default {
       this.$axios.get("http://localhost:3000/users").then(response => {
         this.loading = false; //加载中
         this.data = response.data; //获取所有的数据
-        this.dataOrign = response.data; //保存原始数据
-        this.dataChange(response.data); //传入总数据
+        this.dataOrign = JSON.parse(JSON.stringify(response.data)); //保存原始数据
+        this.dataChange(this.data); //传入总数据
       });
     },
     //因为筛选数据后还要重新调用一次所以单独抽离出来
